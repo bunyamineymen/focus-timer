@@ -24,8 +24,8 @@ struct Index {
   })
 
   updateFocus() {
-    let currentFocus = this.program.currentFocus;
-    if (currentFocus.type != this.currentFocusType) {
+    const currentFocus = this.program.currentFocus;
+    if (currentFocus.type !== this.currentFocusType) {
       // Current focus changed
       this.currentFocusType = currentFocus.type
       this.timer.refresh(currentFocus.value * 60)
@@ -42,7 +42,7 @@ struct Index {
 
       ProgressRing({
         timer: this.timer,
-        progressType: this.currentFocusType,
+        progressType: this.currentFocusType
       })
 
       ProgressTimes({
@@ -54,7 +54,7 @@ struct Index {
         .arcDirection(ArcDirection.SIX_CLOCK_DIRECTION)
         .maskColor(new LinearGradient([{
           color: Color.Transparent,
-          offset: $r('app.float.offset_zero'),
+          offset: $r('app.float.offset_zero')
         }]))
     )
     .effectMode(EdgeEffect.None)

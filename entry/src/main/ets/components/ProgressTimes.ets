@@ -28,14 +28,16 @@ export default struct ProgressTimes {
                     onChange: (val: number) => {
                       this.program.changeDefaultTime(focus.type, val)
                     }
-                  },
+                  }
                 }
               })
             }
             .width(SizeConstants.FULL_WIDTH_PERCENT)
           }
-        }, (item: Focus, index: number) => `${index} ${JSON.stringify(item)}`)
+        }, (item: Focus, index: number) => `${JSON.stringify(item)}`)
       }
+      .width(SizeConstants.FULL_WIDTH_PERCENT)
+      .height(SizeConstants.FULL_HEIGHT_PERCENT)
     }
     .width(SizeConstants.FULL_WIDTH_PERCENT)
     .height(SizeConstants.FULL_HEIGHT_PERCENT)

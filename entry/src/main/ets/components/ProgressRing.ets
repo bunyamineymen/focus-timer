@@ -11,7 +11,7 @@ export default struct ProgressRing {
     { color: $r('app.color.purple_gradient_2'), offset: $r('app.float.offset_0_4') },
     { color: $r('app.color.purple_gradient_3'), offset: $r('app.float.offset_0_6') },
     { color: $r('app.color.purple_gradient_4'), offset: $r('app.float.offset_0_8') },
-    { color: $r('app.color.purple_gradient_5'), offset: $r('app.float.offset_one') },
+    { color: $r('app.color.purple_gradient_5'), offset: $r('app.float.offset_one') }
   ])
 
   build() {
@@ -44,7 +44,7 @@ export default struct ProgressRing {
           top: $r('app.float.margin_4'),
           bottom: $r('app.float.margin_4'),
           left: $r('app.float.margin_4'),
-          right: $r('app.float.margin_8'),
+          right: $r('app.float.margin_8')
         })
         .onClick(() => {
           if (this.timer.running) {

@@ -16,8 +16,8 @@ export default class Program {
   currentFocus = this.getCurrentFocus()
 
   getCurrentFocus() {
-    let currentType = this.program[this.programIndex]
-    let currentFocus: Focus = {
+    const currentType = this.program[this.programIndex]
+    const currentFocus: Focus = {
       type: currentType,
       value: this.focusTimes.get(currentType)!
     }
@@ -25,7 +25,7 @@ export default class Program {
   }
 
   getFocusList() {
-    let focusList: Focus[] = []
+    const focusList: Focus[] = []
     this.focusTimes.forEach((value: number, type: FocusType) => {
       focusList.push({ type: type, value: value })
     })

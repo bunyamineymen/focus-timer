@@ -25,7 +25,7 @@ export default class Timer {
   start() {
     this.intervalId = setInterval(() => {
       this.progress++;
-      if (this.progress == this.goal) {
+      if (this.progress === this.goal) {
         this.stop();
         this.timerEndCallback()
       }
@@ -54,9 +54,9 @@ export default class Timer {
   }
 
   formattedTime() {
-    let remaining = this.goal - this.progress
-    let seconds = remaining % 60
-    let minutes = (remaining - seconds) / 60
+    const remaining = this.goal - this.progress
+    const seconds = remaining % 60
+    const minutes = (remaining - seconds) / 60
     return `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`
   }
 
