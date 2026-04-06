@@ -15,6 +15,10 @@ export default class Program {
   private programIndex: number = AppStorage.get('programIndex') ?? 0
   currentFocus = this.getCurrentFocus()
 
+  getProgramIndex(): number {
+    return this.programIndex
+  }
+
   getCurrentFocus() {
     const currentType = this.program[this.programIndex]
     const currentFocus: Focus = {
