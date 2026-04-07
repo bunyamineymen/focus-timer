@@ -41,52 +41,67 @@ export struct AchievementsPage {
           Blank().width(28)
         }
         .width(SizeConstants.FULL_WIDTH_PERCENT)
-        .padding({ left: 8, right: 8, top: 4 })
+        .padding({
+          left: SizeConstants.PAGE_SIDE_PADDING,
+          right: SizeConstants.PAGE_SIDE_PADDING,
+          top: SizeConstants.PAGE_HEADER_TOP_PADDING
+        })
 
-        // Progress summary
-        Row({ space: 8 }) {
-          Text(`${this.unlockedCount}`)
-            .fontSize(22)
-            .fontColor('#FFD700')
-            .fontWeight(FontWeight.Bold)
-          Text('/')
-            .fontSize(16)
-            .fontColor('#666666')
-          Text(`${ACHIEVEMENTS.length}`)
-            .fontSize(16)
-            .fontColor('#888888')
-        }
-        .margin({ top: 4, bottom: 4 })
-        .justifyContent(FlexAlign.Center)
-        .width(SizeConstants.FULL_WIDTH_PERCENT)
-
-        Progress({ value: this.unlockedCount, total: ACHIEVEMENTS.length })
-          .width('80%')
-          .height(4)
-          .color('#FFD700')
-          .backgroundColor('#333333')
-          .margin({ bottom: 8 })
-
-        // Badge grid
         Scroll() {
-          Grid() {
-            ForEach(ACHIEVEMENTS, (achievement: Achievement, index: number) => {
-              GridItem() {
-                BadgeCard({
-                  achievement: achievement,
-                  progress: this.progressList[index] ?? {
-                    achievementId: achievement.id,
-                    currentValue: 0,
-                    unlocked: false
-                  }
-                })
-              }
-            }, (achievement: Achievement) => achievement.id)
+          Column() {
+            // Progress summary
+            Row({ space: 8 }) {
+              Text(`${this.unlockedCount}`)
+                .fontSize(22)
+                .fontColor('#FFD700')
+                .fontWeight(FontWeight.Bold)
+              Text('/')
+                .fontSize(16)
+                .fontColor('#666666')
+              Text(`${ACHIEVEMENTS.length}`)
+                .fontSize(16)
+                .fontColor('#888888')
+            }
+            .margin({ top: 4, bottom: 4 })
+            .justifyContent(FlexAlign.Center)
+            .width(SizeConstants.FULL_WIDTH_PERCENT)
+
+            Row() {
+              Progress({ value: this.unlockedCount, total: ACHIEVEMENTS.length })
+                .width('80%')
+                .height(4)
+                .color('#FFD700')
+                .backgroundColor('#333333')
+            }
+            .width(SizeConstants.FULL_WIDTH_PERCENT)
+            .justifyContent(FlexAlign.Center)
+            .margin({ bottom: 12 })
+
+            Grid() {
+              ForEach(ACHIEVEMENTS, (achievement: Achievement, index: number) => {
+                GridItem() {
+                  BadgeCard({
+                    achievement: achievement,
+                    progress: this.progressList[index] ?? {
+                      achievementId: achievement.id,
+                      currentValue: 0,
+                      unlocked: false
+                    }
+                  })
+                }
+              }, (achievement: Achievement) => achievement.id)
+            }
+            .columnsTemplate('1fr 1fr 1fr')
+            .rowsGap(8)
+            .columnsGap(4)
+            .width(SizeConstants.FULL_WIDTH_PERCENT)
+
+            Blank().height(SizeConstants.PAGE_CONTENT_BOTTOM_PADDING)
           }
-          .columnsTemplate('1fr 1fr 1fr')
-          .rowsGap(8)
-          .columnsGap(4)
-          .padding(8)
+          .padding({
+            left: SizeConstants.PAGE_SIDE_PADDING,
+            right: SizeConstants.PAGE_SIDE_PADDING
+          })
         }
         .layoutWeight(1)
         .scrollBar(BarState.Off)

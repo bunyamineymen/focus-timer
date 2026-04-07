@@ -72,10 +72,12 @@ export struct Index {
             })
               .layoutWeight(1)
 
-            if (this.showQuotes && !this.timer.running) {
-              QuotesProvider()
-                .height(36)
+            Column() {
+              if (this.showQuotes && !this.timer.running) {
+                QuotesProvider()
+              }
             }
+            .height(36)
           }
           .width(SizeConstants.FULL_WIDTH_PERCENT)
           .height(SizeConstants.FULL_HEIGHT_PERCENT)
@@ -89,11 +91,13 @@ export struct Index {
             })
               .layoutWeight(1)
 
-            if (this.currentFocusType === FocusType.focus) {
-              TagSelector({ selectedTagId: this.selectedTag })
-                .height(60)
-                .padding({ bottom: 4 })
+            Column() {
+              if (this.currentFocusType === FocusType.focus) {
+                TagSelector({ selectedTagId: this.selectedTag })
+                  .padding({ bottom: 4 })
+              }
             }
+            .height(60)
           }
           .width(SizeConstants.FULL_WIDTH_PERCENT)
           .height(SizeConstants.FULL_HEIGHT_PERCENT)
@@ -136,7 +140,7 @@ export struct Index {
         .height(28)
         .borderRadius(14)
         .backgroundColor('#33333380')
-        .position({ x: '75%', y: 8 })
+        .position({ x: '70%', y: SizeConstants.FLOATING_BUTTON_TOP_OFFSET })
         .onClick(() => {
           this.pageInfos.pushPathByName('Settings', null)
         })
@@ -151,7 +155,7 @@ export struct Index {
         .height(28)
         .borderRadius(14)
         .backgroundColor('#33333380')
-        .position({ x: '10%', y: 8 })
+        .position({ x: '25%', y: SizeConstants.FLOATING_BUTTON_TOP_OFFSET })
         .onClick(() => {
           this.pageInfos.pushPathByName('Stats', null)
         })

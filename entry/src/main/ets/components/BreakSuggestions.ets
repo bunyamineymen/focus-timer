@@ -31,6 +31,7 @@ export default struct BreakSuggestions {
 
   build() {
     Column() {
+      Blank().width('100%').height('20%')
       Swiper() {
         ForEach(this.activities, (activity: BreakActivity, index: number) => {
           Column({ space: 6 }) {
@@ -92,6 +93,8 @@ export default struct BreakSuggestions {
     }
     .width(SizeConstants.FULL_WIDTH_PERCENT)
     .height(SizeConstants.FULL_HEIGHT_PERCENT)
+    .alignSelf(ItemAlign.Center)
+    .alignSelf(ItemAlign.Center)
   }
 
   private startMiniTimer(duration: number) {

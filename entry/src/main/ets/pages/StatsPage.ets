@@ -48,7 +48,11 @@ export struct StatsPage {
           Blank().width(28)
         }
         .width(SizeConstants.FULL_WIDTH_PERCENT)
-        .padding({ left: 8, right: 8, top: 4 })
+        .padding({
+          left: SizeConstants.PAGE_SIDE_PADDING,
+          right: SizeConstants.PAGE_SIDE_PADDING,
+          top: SizeConstants.PAGE_HEADER_TOP_PADDING
+        })
 
         Scroll() {
           Column({ space: 12 }) {
@@ -82,7 +86,11 @@ export struct StatsPage {
 
             Blank().height(20)
           }
-          .padding(8)
+          .padding({
+            left: SizeConstants.PAGE_SIDE_PADDING,
+            right: SizeConstants.PAGE_SIDE_PADDING,
+            bottom: SizeConstants.PAGE_CONTENT_BOTTOM_PADDING
+          })
         }
         .layoutWeight(1)
         .scrollBar(BarState.Off)

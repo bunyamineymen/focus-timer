@@ -34,7 +34,11 @@ export struct ProgramListPage {
           Blank().width(28)
         }
         .width(SizeConstants.FULL_WIDTH_PERCENT)
-        .padding({ left: 8, right: 8, top: 4 })
+        .padding({
+          left: SizeConstants.PAGE_SIDE_PADDING,
+          right: SizeConstants.PAGE_SIDE_PADDING,
+          top: SizeConstants.PAGE_HEADER_TOP_PADDING
+        })
 
         // Program list
         List({ space: 8 }) {
@@ -107,7 +111,11 @@ export struct ProgramListPage {
         }
         .width(SizeConstants.FULL_WIDTH_PERCENT)
         .layoutWeight(1)
-        .padding(8)
+        .padding({
+          left: SizeConstants.PAGE_SIDE_PADDING,
+          right: SizeConstants.PAGE_SIDE_PADDING,
+          bottom: SizeConstants.PAGE_CONTENT_BOTTOM_PADDING
+        })
         .scrollBar(BarState.Off)
       }
       .width(SizeConstants.FULL_WIDTH_PERCENT)

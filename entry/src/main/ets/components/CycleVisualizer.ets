@@ -25,6 +25,7 @@ export default struct CycleVisualizer {
       }
     }
     .width(SizeConstants.FULL_WIDTH_PERCENT)
+    .height(SizeConstants.FULL_HEIGHT_PERCENT)
     .justifyContent(FlexAlign.Center)
     .alignItems(HorizontalAlign.Center)
   }

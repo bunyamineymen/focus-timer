@@ -29,19 +29,24 @@ export struct OnboardingPage {
         .justifyContent(FlexAlign.Center)
         .margin({ top: 12 })
 
-        Column() {
-          if (this.currentStep === 0) {
-            this.welcomeStep()
-          } else if (this.currentStep === 1) {
-            this.howItWorksStep()
-          } else if (this.currentStep === 2) {
-            this.goalStep()
-          } else {
-            this.themeStep()
+        Scroll() {
+          Column() {
+            if (this.currentStep === 0) {
+              this.welcomeStep()
+            } else if (this.currentStep === 1) {
+              this.howItWorksStep()
+            } else if (this.currentStep === 2) {
+              this.goalStep()
+            } else {
+              this.themeStep()
+            }
           }
+          .width(SizeConstants.FULL_WIDTH_PERCENT)
         }
         .layoutWeight(1)
         .width(SizeConstants.FULL_WIDTH_PERCENT)
+        .scrollBar(BarState.Off)
+        .edgeEffect(EdgeEffect.Spring)
 
         Row({ space: 8 }) {
           if (this.currentStep > 0) {
@@ -106,29 +111,26 @@ export struct OnboardingPage {
         .padding({ left: 16, right: 16 })
     }
     .width(SizeConstants.FULL_WIDTH_PERCENT)
-    .height(SizeConstants.FULL_HEIGHT_PERCENT)
     .justifyContent(FlexAlign.Center)
     .opacity(this.fadeIn)
+    .padding({ left: 16, right: 16, top: 24, bottom: 24 })
   }
 
   @Builder
   howItWorksStep() {
-    Scroll() {
-      Column({ space: 8 }) {
-        Text($r('app.string.onboarding_how_title'))
-          .fontSize(14)
-          .fontColor(Color.White)
-          .fontWeight(FontWeight.Bold)
+    Column({ space: 8 }) {
+      Text($r('app.string.onboarding_how_title'))
+        .fontSize(14)
+        .fontColor(Color.White)
+        .fontWeight(FontWeight.Bold)
 
-        this.stepItem('1', $r('app.string.onboarding_step1'), '#552586')
-        this.stepItem('2', $r('app.string.onboarding_step2'), '#4CAF50')
-        this.stepItem('3', $r('app.string.onboarding_step3'), '#2196F3')
-        this.stepItem('4', $r('app.string.onboarding_step4'), '#FF9800')
-      }
-      .width(SizeConstants.FULL_WIDTH_PERCENT)
-      .padding(16)
+      this.stepItem('1', $r('app.string.onboarding_step1'), '#552586')
+      this.stepItem('2', $r('app.string.onboarding_step2'), '#4CAF50')
+      this.stepItem('3', $r('app.string.onboarding_step3'), '#2196F3')
+      this.stepItem('4', $r('app.string.onboarding_step4'), '#FF9800')
     }
-    .scrollBar(BarState.Off)
+    .width(SizeConstants.FULL_WIDTH_PERCENT)
+    .padding(16)
   }
 
   @Builder
@@ -171,8 +173,8 @@ export struct OnboardingPage {
       .justifyContent(FlexAlign.SpaceBetween)
     }
     .width(SizeConstants.FULL_WIDTH_PERCENT)
-    .height(SizeConstants.FULL_HEIGHT_PERCENT)
     .justifyContent(FlexAlign.Center)
+    .padding({ left: 16, right: 16, top: 24, bottom: 24 })
   }
 
   @Builder
@@ -186,9 +188,8 @@ export struct OnboardingPage {
       ThemePickerView({ selectedThemeId: this.selectedTheme })
     }
     .width(SizeConstants.FULL_WIDTH_PERCENT)
-    .height(SizeConstants.FULL_HEIGHT_PERCENT)
     .justifyContent(FlexAlign.Center)
-    .padding(16)
+    .padding({ left: 16, right: 16, top: 24, bottom: 24 })
   }
 
   @Builder
