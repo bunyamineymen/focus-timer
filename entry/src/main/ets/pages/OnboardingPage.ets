@@ -45,7 +45,7 @@ export struct OnboardingPage {
         }
         .layoutWeight(1)
         .width(SizeConstants.FULL_WIDTH_PERCENT)
-        .scrollBar(BarState.Off)
+        .scrollBar(BarState.Auto)
         .edgeEffect(EdgeEffect.Spring)
 
         Row({ space: 8 }) {

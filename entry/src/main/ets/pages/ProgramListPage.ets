@@ -116,7 +116,8 @@ export struct ProgramListPage {
           right: SizeConstants.PAGE_SIDE_PADDING,
           bottom: SizeConstants.PAGE_CONTENT_BOTTOM_PADDING
         })
-        .scrollBar(BarState.Off)
+        .scrollBar(BarState.Auto)
+        .edgeEffect(EdgeEffect.Spring)
       }
       .width(SizeConstants.FULL_WIDTH_PERCENT)
       .height(SizeConstants.FULL_HEIGHT_PERCENT)

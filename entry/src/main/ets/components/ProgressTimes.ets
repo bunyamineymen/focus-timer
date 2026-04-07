@@ -38,6 +38,8 @@ export default struct ProgressTimes {
       }
       .width(SizeConstants.FULL_WIDTH_PERCENT)
       .height(SizeConstants.FULL_HEIGHT_PERCENT)
+      .scrollBar(BarState.Auto)
+      .edgeEffect(EdgeEffect.Spring)
     }
     .width(SizeConstants.FULL_WIDTH_PERCENT)
     .height(SizeConstants.FULL_HEIGHT_PERCENT)

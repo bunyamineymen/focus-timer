@@ -92,8 +92,9 @@ export struct StatsPage {
             bottom: SizeConstants.PAGE_CONTENT_BOTTOM_PADDING
           })
         }
+        .width(SizeConstants.FULL_WIDTH_PERCENT)
         .layoutWeight(1)
-        .scrollBar(BarState.Off)
+        .scrollBar(BarState.Auto)
         .edgeEffect(EdgeEffect.Spring)
       }
       .width(SizeConstants.FULL_WIDTH_PERCENT)
