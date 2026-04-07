@@ -17,9 +17,9 @@ export default struct BreakSuggestions {
   private activities: BreakActivity[] = [
     { icon: $r('sys.symbol.figure_walk'), name: $r('app.string.break_walk'), description: $r('app.string.break_walk_desc'), durationSeconds: 120, color: '#4CAF50' },
     { icon: $r('sys.symbol.drop_fill'), name: $r('app.string.break_water'), description: $r('app.string.break_water_desc'), durationSeconds: 30, color: '#2196F3' },
-    { icon: $r('sys.symbol.eye_fill'), name: $r('app.string.break_eyes'), description: $r('app.string.break_eyes_desc'), durationSeconds: 60, color: '#FF9800' },
-    { icon: $r('sys.symbol.figure_flexibility'), name: $r('app.string.break_stretch'), description: $r('app.string.break_stretch_desc'), durationSeconds: 90, color: '#E91E63' },
-    { icon: $r('sys.symbol.hand_raised_fill'), name: $r('app.string.break_relax'), description: $r('app.string.break_relax_desc'), durationSeconds: 60, color: '#9C27B0' },
+    { icon: $r('sys.symbol.moon_fill'), name: $r('app.string.break_eyes'), description: $r('app.string.break_eyes_desc'), durationSeconds: 60, color: '#FF9800' },
+    { icon: $r('sys.symbol.figure_walk'), name: $r('app.string.break_stretch'), description: $r('app.string.break_stretch_desc'), durationSeconds: 90, color: '#E91E63' },
+    { icon: $r('sys.symbol.heart_fill'), name: $r('app.string.break_relax'), description: $r('app.string.break_relax_desc'), durationSeconds: 60, color: '#9C27B0' },
     { icon: $r('sys.symbol.face_smiling'), name: $r('app.string.break_smile'), description: $r('app.string.break_smile_desc'), durationSeconds: 30, color: '#00BCD4' },
   ]
 

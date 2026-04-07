@@ -11,7 +11,7 @@ export default struct ThemePickerView {
         .fontSize(12)
         .fontColor('#CCCCCC')
 
-      Flex({ wrap: FlexWrap.Wrap, justifyContent: FlexAlign.Center, space: { main: LengthMetrics.vp(8), cross: LengthMetrics.vp(8) } }) {
+      Flex({ wrap: FlexWrap.Wrap, justifyContent: FlexAlign.Center }) {
         ForEach(THEMES, (theme: AppTheme) => {
           Column({ space: 4 }) {
             Stack() {
@@ -45,6 +45,7 @@ export default struct ThemePickerView {
               .fontColor(this.selectedThemeId === theme.id ? Color.White : '#888888')
               .textAlign(TextAlign.Center)
           }
+          .margin({ right: 8, bottom: 8 })
           .onClick(() => {
             this.selectedThemeId = theme.id
             AppStorage.setOrCreate('selectedTheme', theme.id)

@@ -29,7 +29,7 @@ export default struct IntensitySelector {
               .fontColor(this.selectedIntensity === config.level ? Color.White : '#888888')
           }
           .onClick(() => {
-            animateTo({ duration: 200, curve: Curve.EaseInOut }, () => {
+            this.getUIContext()?.animateTo({ duration: 200, curve: Curve.EaseInOut }, () => {
               this.selectedIntensity = config.level
               AppStorage.setOrCreate('selectedIntensity', config.level)
             })

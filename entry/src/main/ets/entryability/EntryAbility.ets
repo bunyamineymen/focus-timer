@@ -50,11 +50,7 @@ export default class EntryAbility extends UIAbility {
     AchievementService.getInstance().initialize()
     StreakTracker.getInstance().initialize()
 
-    // Check if onboarding is complete
-    const onboardingComplete: boolean = AppStorage.get('onboardingComplete') ?? false
-    const startPage = onboardingComplete ? 'pages/Index' : 'pages/OnboardingPage'
-
-    windowStage.loadContent(startPage, (err: BusinessError) => {
+    windowStage.loadContent('pages/NavigationContainer', (err: BusinessError) => {
       if (err.code) {
         hilog.error(0x0000, 'testTag', 'Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '');
         return;

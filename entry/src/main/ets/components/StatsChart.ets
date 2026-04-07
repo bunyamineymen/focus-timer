@@ -1,5 +1,10 @@
 import { SizeConstants } from '../constants/SizeConstants'
 
+interface ChartSegment {
+  tag: string
+  value: number
+}
+
 @Component
 export default struct StatsChart {
   @Prop weeklyData: number[] = [0, 0, 0, 0, 0, 0, 0]
@@ -118,7 +123,7 @@ export default struct StatsChart {
 
     // Parse tag data
     let total = 0
-    const segments: { tag: string; value: number }[] = []
+    const segments: ChartSegment[] = []
     this.tagData.forEach((entry: string) => {
       const parts = entry.split(':')
       if (parts.length === 2) {
@@ -130,7 +135,7 @@ export default struct StatsChart {
 
     // Draw pie slices
     let currentAngle = -Math.PI / 2
-    segments.forEach((seg: { tag: string; value: number }, i: number) => {
+    segments.forEach((seg: ChartSegment, i: number) => {
       const sliceAngle = (seg.value / total) * 2 * Math.PI
       ctx.beginPath()
       ctx.moveTo(centerX, centerY)
@@ -150,7 +155,7 @@ export default struct StatsChart {
 
     // Legend
     const legendX = 115
-    segments.forEach((seg: { tag: string; value: number }, i: number) => {
+    segments.forEach((seg: ChartSegment, i: number) => {
       const y = 15 + i * 16
       ctx.fillStyle = this.chartColors[i % this.chartColors.length]
       ctx.fillRect(legendX, y - 6, 8, 8)

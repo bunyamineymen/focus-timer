@@ -9,7 +9,7 @@ export default struct GoalRingView {
 
   aboutToAppear() {
     setTimeout(() => {
-      animateTo({ duration: 800, curve: Curve.EaseOut }, () => {
+      this.getUIContext()?.animateTo({ duration: 800, curve: Curve.EaseOut }, () => {
         this.animatedProgress = this.goal.progress * 100
       })
     }, 200)
@@ -26,7 +26,7 @@ export default struct GoalRingView {
           .description(this.buildDescription())
 
         if (this.showCelebration) {
-          Text('🎉')
+          Text('Nice!')
             .fontSize(28)
             .offset({ y: -50 })
             .transition(TransitionEffect.scale({ x: 0, y: 0 }).animation({ duration: 500, curve: Curve.EaseOut }))
@@ -62,7 +62,7 @@ export default struct GoalRingView {
     .onAppear(() => {
       if (this.goal.isCompleted) {
         setTimeout(() => {
-          animateTo({ duration: 600, curve: Curve.EaseOut }, () => {
+          this.getUIContext()?.animateTo({ duration: 600, curve: Curve.EaseOut }, () => {
             this.showCelebration = true
           })
         }, 1000)

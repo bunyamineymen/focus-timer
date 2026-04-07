@@ -51,11 +51,11 @@ export default struct BadgeCard {
     .padding(4)
     .onClick(() => {
       if (this.progress.unlocked) {
-        animateTo({ duration: 300, curve: Curve.EaseInOut }, () => {
+        this.getUIContext()?.animateTo({ duration: 300, curve: Curve.EaseInOut }, () => {
           this.scaleVal = 1.2
         })
         setTimeout(() => {
-          animateTo({ duration: 300, curve: Curve.EaseInOut }, () => {
+          this.getUIContext()?.animateTo({ duration: 300, curve: Curve.EaseInOut }, () => {
             this.scaleVal = 1.0
           })
         }, 300)

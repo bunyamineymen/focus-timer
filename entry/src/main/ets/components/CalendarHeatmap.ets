@@ -76,14 +76,11 @@ export default struct CalendarHeatmap {
         const y = 5 + row * (cellSize + gap)
 
         ctx.fillStyle = this.heatColors[intensity]
-        ctx.beginPath()
-        ctx.roundRect(x, y, cellSize, cellSize, 2)
-        ctx.fill()
+        ctx.fillRect(x, y, cellSize, cellSize)
       }
     }
 
     // Today marker
-    const todayStr = `${today.getFullYear()}-${(today.getMonth() + 1).toString().padStart(2, '0')}-${today.getDate().toString().padStart(2, '0')}`
     const totalDays = cols * rows
     const todayIndex = totalDays - 1
     const todayCol = Math.floor(todayIndex / rows)
@@ -92,8 +89,6 @@ export default struct CalendarHeatmap {
     const ty = 5 + todayRow * (cellSize + gap)
     ctx.strokeStyle = '#FFFFFF'
     ctx.lineWidth = 1
-    ctx.beginPath()
-    ctx.roundRect(tx, ty, cellSize, cellSize, 2)
-    ctx.stroke()
+    ctx.strokeRect(tx, ty, cellSize, cellSize)
   }
 }

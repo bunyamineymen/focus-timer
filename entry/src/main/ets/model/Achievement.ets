@@ -37,11 +37,11 @@ export const ACHIEVEMENTS: Achievement[] = [
   },
   {
     id: 'hundred_sessions', name: $r('app.string.ach_hundred_sessions'), description: $r('app.string.ach_hundred_sessions_desc'),
-    icon: $r('sys.symbol.trophy_fill'), targetValue: 100, category: AchievementCategory.sessions
+    icon: $r('sys.symbol.checkmark_circle_fill'), targetValue: 100, category: AchievementCategory.sessions
   },
   {
     id: 'five_hundred_sessions', name: $r('app.string.ach_five_hundred_sessions'), description: $r('app.string.ach_five_hundred_sessions_desc'),
-    icon: $r('sys.symbol.crown_fill'), targetValue: 500, category: AchievementCategory.sessions
+    icon: $r('sys.symbol.star_fill'), targetValue: 500, category: AchievementCategory.sessions
   },
   // Minute milestones
   {
@@ -50,7 +50,7 @@ export const ACHIEVEMENTS: Achievement[] = [
   },
   {
     id: 'five_hour_focus', name: $r('app.string.ach_five_hour_focus'), description: $r('app.string.ach_five_hour_focus_desc'),
-    icon: $r('sys.symbol.clock_badge_checkmark'), targetValue: 300, category: AchievementCategory.minutes
+    icon: $r('sys.symbol.clock_fill'), targetValue: 300, category: AchievementCategory.minutes
   },
   {
     id: 'day_focus', name: $r('app.string.ach_day_focus'), description: $r('app.string.ach_day_focus_desc'),
@@ -72,7 +72,7 @@ export const ACHIEVEMENTS: Achievement[] = [
   // Exploration
   {
     id: 'all_tags', name: $r('app.string.ach_all_tags'), description: $r('app.string.ach_all_tags_desc'),
-    icon: $r('sys.symbol.tag_fill'), targetValue: 6, category: AchievementCategory.exploration
+    icon: $r('sys.symbol.list_bullet'), targetValue: 6, category: AchievementCategory.exploration
   },
   {
     id: 'theme_changer', name: $r('app.string.ach_theme_changer'), description: $r('app.string.ach_theme_changer_desc'),

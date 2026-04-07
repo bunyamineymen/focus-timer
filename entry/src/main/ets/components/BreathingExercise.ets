@@ -16,7 +16,7 @@ export default struct BreathingExercise {
   @State private isRunning: boolean = false
   @State private circleColor: string = '#552586'
   @State private cyclesCompleted: number = 0
-  @State private opacity: number = 0.6
+  @State private glowOpacity: number = 0.6
   private intervalId: number = -1
   // 4-7-8 technique: inhale 4s, hold 7s, exhale 8s
   private pattern: number[] = [4, 7, 8, 2]
@@ -36,7 +36,7 @@ export default struct BreathingExercise {
           .fill(Color.Transparent)
           .stroke(this.circleColor)
           .strokeWidth(2)
-          .opacity(this.opacity)
+          .opacity(this.glowOpacity)
 
         // Breathing circle
         Circle()
@@ -134,9 +134,9 @@ export default struct BreathingExercise {
         this.phase = BreathPhase.inhale
         this.phaseText = 'Breathe In'
         this.circleColor = '#4CAF50'
-        animateTo({ duration: this.pattern[0] * 1000, curve: Curve.EaseInOut }, () => {
+        this.getUIContext()?.animateTo({ duration: this.pattern[0] * 1000, curve: Curve.EaseInOut }, () => {
           this.circleScale = 1.0
-          this.opacity = 1.0
+          this.glowOpacity = 1.0
         })
         break
       case 1: // Hold
@@ -148,9 +148,9 @@ export default struct BreathingExercise {
         this.phase = BreathPhase.exhale
         this.phaseText = 'Breathe Out'
         this.circleColor = '#9C27B0'
-        animateTo({ duration: this.pattern[2] * 1000, curve: Curve.EaseInOut }, () => {
+        this.getUIContext()?.animateTo({ duration: this.pattern[2] * 1000, curve: Curve.EaseInOut }, () => {
           this.circleScale = 0.5
-          this.opacity = 0.6
+          this.glowOpacity = 0.6
         })
         break
       case 3: // Rest

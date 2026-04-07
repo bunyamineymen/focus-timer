@@ -118,7 +118,7 @@ export struct AchievementUnlockDialog {
 
   aboutToAppear() {
     setTimeout(() => {
-      animateTo({
+      this.getUIContext()?.animateTo({
         duration: 600,
         curve: Curve.EaseOut,
       }, () => {

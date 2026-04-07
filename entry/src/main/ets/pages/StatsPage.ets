@@ -1,4 +1,3 @@
-import { router } from '@kit.ArkUI'
 import StatsChart from '../components/StatsChart'
 import CalendarHeatmap from '../components/CalendarHeatmap'
 import GoalRingView from '../components/GoalRingView'
@@ -7,9 +6,9 @@ import { DbService } from '../service/DbService'
 import { StreakTracker } from '../service/StreakTracker'
 import { SizeConstants } from '../constants/SizeConstants'
 
-@Entry
 @Component
-struct StatsPage {
+export struct StatsPage {
+  @Consume('pageInfos') pageInfos: NavPathStack
   @State weeklyData: number[] = [0, 0, 0, 0, 0, 0, 0]
   @State tagData: string[] = []
   @State heatmapData: string[] = []
@@ -24,73 +23,76 @@ struct StatsPage {
   }
 
   build() {
-    Column() {
-      // Header
-      Row() {
-        Button() {
-          SymbolGlyph($r('sys.symbol.chevron_left'))
-            .fontColor([Color.White])
+    NavDestination() {
+      Column() {
+        // Header
+        Row() {
+          Button() {
+            SymbolGlyph($r('sys.symbol.chevron_left'))
+              .fontColor([Color.White])
+              .fontSize(16)
+          }
+          .width(28)
+          .height(28)
+          .borderRadius(14)
+          .backgroundColor('#333333')
+          .onClick(() => this.pageInfos.pop())
+
+          Text($r('app.string.statistics'))
             .fontSize(16)
+            .fontColor(Color.White)
+            .fontWeight(FontWeight.Bold)
+            .layoutWeight(1)
+            .textAlign(TextAlign.Center)
+
+          Blank().width(28)
         }
-        .width(28)
-        .height(28)
-        .borderRadius(14)
-        .backgroundColor('#333333')
-        .onClick(() => router.back())
+        .width(SizeConstants.FULL_WIDTH_PERCENT)
+        .padding({ left: 8, right: 8, top: 4 })
 
-        Text($r('app.string.statistics'))
-          .fontSize(16)
-          .fontColor(Color.White)
-          .fontWeight(FontWeight.Bold)
-          .layoutWeight(1)
-          .textAlign(TextAlign.Center)
+        Scroll() {
+          Column({ space: 12 }) {
+            // Goal ring
+            GoalRingView({ goal: this.goal })
 
-        Blank().width(28)
+            Divider().color('#333333')
+
+            // Summary cards
+            Row({ space: 8 }) {
+              this.statCard($r('app.string.sessions'), `${this.totalSessions}`, '#552586')
+              this.statCard($r('app.string.minutes_label'), `${this.totalMinutes}`, '#2196F3')
+            }
+            .justifyContent(FlexAlign.Center)
+
+            Row({ space: 8 }) {
+              this.statCard($r('app.string.streak'), `${this.currentStreak}d`, '#FF9800')
+              this.statCard($r('app.string.best_streak'), `${this.maxStreak}d`, '#4CAF50')
+            }
+            .justifyContent(FlexAlign.Center)
+
+            Divider().color('#333333')
+
+            // Weekly chart
+            StatsChart({ weeklyData: this.weeklyData, tagData: this.tagData })
+
+            Divider().color('#333333')
+
+            // Calendar heatmap
+            CalendarHeatmap({ dailyData: this.heatmapData })
+
+            Blank().height(20)
+          }
+          .padding(8)
+        }
+        .layoutWeight(1)
+        .scrollBar(BarState.Off)
+        .edgeEffect(EdgeEffect.Spring)
       }
       .width(SizeConstants.FULL_WIDTH_PERCENT)
-      .padding({ left: 8, right: 8, top: 4 })
-
-      Scroll() {
-        Column({ space: 12 }) {
-          // Goal ring
-          GoalRingView({ goal: this.goal })
-
-          Divider().color('#333333')
-
-          // Summary cards
-          Row({ space: 8 }) {
-            this.statCard($r('app.string.sessions'), `${this.totalSessions}`, '#552586')
-            this.statCard($r('app.string.minutes_label'), `${this.totalMinutes}`, '#2196F3')
-          }
-          .justifyContent(FlexAlign.Center)
-
-          Row({ space: 8 }) {
-            this.statCard($r('app.string.streak'), `${this.currentStreak}d`, '#FF9800')
-            this.statCard($r('app.string.best_streak'), `${this.maxStreak}d`, '#4CAF50')
-          }
-          .justifyContent(FlexAlign.Center)
-
-          Divider().color('#333333')
-
-          // Weekly chart
-          StatsChart({ weeklyData: this.weeklyData, tagData: this.tagData })
-
-          Divider().color('#333333')
-
-          // Calendar heatmap
-          CalendarHeatmap({ dailyData: this.heatmapData })
-
-          Blank().height(20)
-        }
-        .padding(8)
-      }
-      .layoutWeight(1)
-      .scrollBar(BarState.Off)
-      .edgeEffect(EdgeEffect.Spring)
+      .height(SizeConstants.FULL_HEIGHT_PERCENT)
+      .backgroundColor('#0D0D0D')
     }
-    .width(SizeConstants.FULL_WIDTH_PERCENT)
-    .height(SizeConstants.FULL_HEIGHT_PERCENT)
-    .backgroundColor('#0D0D0D')
+    .hideTitleBar(true)
   }
 
   @Builder

@@ -12,7 +12,7 @@ export default struct TagSelector {
         .fontSize(12)
         .fontColor('#CCCCCC')
 
-      Flex({ wrap: FlexWrap.Wrap, justifyContent: FlexAlign.Center, space: { main: LengthMetrics.vp(6), cross: LengthMetrics.vp(6) } }) {
+      Flex({ wrap: FlexWrap.Wrap, justifyContent: FlexAlign.Center }) {
         ForEach(this.tags, (tag: Tag) => {
           Row({ space: 4 }) {
             SymbolGlyph(tag.icon)
@@ -30,6 +30,7 @@ export default struct TagSelector {
             width: 1,
             color: this.selectedTagId === tag.id ? tag.color : '#444444'
           })
+          .margin({ right: 6, bottom: 6 })
           .onClick(() => {
             this.selectedTagId = this.selectedTagId === tag.id ? '' : tag.id
           })

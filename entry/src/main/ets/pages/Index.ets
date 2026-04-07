@@ -1,11 +1,3 @@
-import {
-  ArcDirection,
-  ArcDotIndicator,
-  ArcSwiper,
-  ArcSwiperAttribute,
-  router
-} from '@kit.ArkUI'
-
 import ProgressController from '../components/ProgressController'
 import ProgressRing from '../components/ProgressRing'
 import ProgressTimes from '../components/ProgressTimes'
@@ -25,13 +17,11 @@ import { SessionCompleteDialog, AchievementUnlockDialog } from '../components/Fo
 import { ACHIEVEMENTS } from '../model/Achievement'
 import { SizeConstants } from '../constants/SizeConstants'
 
-@Entry
 @Component
-struct Index {
-  private arcDotIndicator: ArcDotIndicator = new ArcDotIndicator();
-
+export struct Index {
+  @Consume('pageInfos') pageInfos: NavPathStack
   @State @Watch('updateFocus') program: Program = new Program()
-  @State currentFocusType: FocusType = this.program.currentFocus.type;
+  @State currentFocusType: FocusType = this.program.currentFocus.type
   @State timer: Timer = new Timer(this.program.currentFocus.value * 60, () => {
     this.onSessionComplete()
   })
@@ -71,104 +61,105 @@ struct Index {
   }
 
   build() {
-    Stack() {
-      ArcSwiper() {
-        // Page 0: Controller with tag selector
-        Column() {
-          ProgressController({
-            timer: this.timer,
-            progressType: this.currentFocusType,
+    NavDestination() {
+      Stack() {
+        Swiper() {
+          // Page 0: Ring with quotes
+          Column() {
+            ProgressRing({
+              timer: this.timer,
+              progressType: this.currentFocusType,
+            })
+              .layoutWeight(1)
+
+            if (this.showQuotes && !this.timer.running) {
+              QuotesProvider()
+                .height(36)
+            }
+          }
+          .width(SizeConstants.FULL_WIDTH_PERCENT)
+          .height(SizeConstants.FULL_HEIGHT_PERCENT)
+
+          // Page 1: Controller with tag selector
+          Column() {
+            ProgressController({
+              timer: this.timer,
+              progressType: this.currentFocusType,
+              program: this.program
+            })
+              .layoutWeight(1)
+
+            if (this.currentFocusType === FocusType.focus) {
+              TagSelector({ selectedTagId: this.selectedTag })
+                .height(60)
+                .padding({ bottom: 4 })
+            }
+          }
+          .width(SizeConstants.FULL_WIDTH_PERCENT)
+          .height(SizeConstants.FULL_HEIGHT_PERCENT)
+
+          // Page 2: Time settings
+          ProgressTimes({
             program: this.program
           })
-            .layoutWeight(1)
 
-          // Tag selector at bottom (compact)
-          if (this.currentFocusType === FocusType.focus) {
-            TagSelector({ selectedTagId: this.selectedTag })
-              .height(60)
-              .padding({ bottom: 4 })
-          }
-        }
-        .width(SizeConstants.FULL_WIDTH_PERCENT)
-        .height(SizeConstants.FULL_HEIGHT_PERCENT)
-
-        // Page 1: Ring with quotes
-        Column() {
-          ProgressRing({
-            timer: this.timer,
-            progressType: this.currentFocusType
+          // Page 3: Cycle Visualizer
+          CycleVisualizer({
+            programCycle: this.program.program.map((t: FocusType) => t as number),
+            currentIndex: this.program.getProgramIndex(),
+            progress: this.timer.goal > 0 ? this.timer.progress / this.timer.goal : 0
           })
-            .layoutWeight(1)
 
-          if (this.showQuotes && !this.timer.running) {
-            QuotesProvider()
-              .height(36)
-          }
+          // Page 4: Breathing Exercise (shown during breaks)
+          BreathingExercise()
+
+          // Page 5: Break Suggestions
+          BreakSuggestions()
         }
-        .width(SizeConstants.FULL_WIDTH_PERCENT)
-        .height(SizeConstants.FULL_HEIGHT_PERCENT)
+        .indicator(
+          new DotIndicator()
+            .color('#444444')
+            .selectedColor('#FFFFFF')
+            .itemWidth(4)
+            .itemHeight(4)
+            .selectedItemWidth(8)
+            .selectedItemHeight(4)
+        )
 
-        // Page 2: Time settings
-        ProgressTimes({
-          program: this.program
+        // Settings button (top-right)
+        Button() {
+          SymbolGlyph($r('sys.symbol.gearshape'))
+            .fontColor([Color.White])
+            .fontSize(14)
+        }
+        .width(28)
+        .height(28)
+        .borderRadius(14)
+        .backgroundColor('#33333380')
+        .position({ x: '75%', y: 8 })
+        .onClick(() => {
+          this.pageInfos.pushPathByName('Settings', null)
         })
 
-        // Page 3: Cycle Visualizer
-        CycleVisualizer({
-          programCycle: this.program.program.map((t: FocusType) => t as number),
-          currentIndex: this.program.getProgramIndex(),
-          progress: this.timer.goal > 0 ? this.timer.progress / this.timer.goal : 0
+        // Stats button (top-left)
+        Button() {
+          SymbolGlyph($r('sys.symbol.list_bullet'))
+            .fontColor([Color.White])
+            .fontSize(14)
+        }
+        .width(28)
+        .height(28)
+        .borderRadius(14)
+        .backgroundColor('#33333380')
+        .position({ x: '10%', y: 8 })
+        .onClick(() => {
+          this.pageInfos.pushPathByName('Stats', null)
         })
-
-        // Page 4: Breathing Exercise (shown during breaks)
-        BreathingExercise()
-
-        // Page 5: Break Suggestions
-        BreakSuggestions()
       }
-      .indicator(
-        this.arcDotIndicator
-          .arcDirection(ArcDirection.SIX_CLOCK_DIRECTION)
-          .maskColor(new LinearGradient([{
-            color: Color.Transparent,
-            offset: $r('app.float.offset_zero')
-          }]))
-      )
-      .effectMode(EdgeEffect.None)
-      .index(1)
-
-      // Settings button (top-right)
-      Button() {
-        SymbolGlyph($r('sys.symbol.gearshape'))
-          .fontColor([Color.White])
-          .fontSize(14)
-      }
-      .width(28)
-      .height(28)
-      .borderRadius(14)
-      .backgroundColor('#33333380')
-      .position({ x: '75%', y: 8 })
-      .onClick(() => {
-        router.pushUrl({ url: 'pages/SettingsPage' })
-      })
-
-      // Stats button (top-left)
-      Button() {
-        SymbolGlyph($r('sys.symbol.chart_bar_fill'))
-          .fontColor([Color.White])
-          .fontSize(14)
-      }
-      .width(28)
-      .height(28)
-      .borderRadius(14)
-      .backgroundColor('#33333380')
-      .position({ x: '10%', y: 8 })
-      .onClick(() => {
-        router.pushUrl({ url: 'pages/StatsPage' })
-      })
+      .width(SizeConstants.FULL_WIDTH_PERCENT)
+      .height(SizeConstants.FULL_HEIGHT_PERCENT)
     }
-    .width(SizeConstants.FULL_WIDTH_PERCENT)
-    .height(SizeConstants.FULL_HEIGHT_PERCENT)
+    .hideTitleBar(true)
   }
 
   private async onSessionComplete() {

@@ -1,10 +1,5 @@
 {
   "src": [
-    "pages/Index",
-    "pages/StatsPage",
-    "pages/OnboardingPage",
-    "pages/SettingsPage",
-    "pages/AchievementsPage",
-    "pages/ProgramListPage"
+    "pages/NavigationContainer"
   ]
 }
