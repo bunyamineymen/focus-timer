@@ -74,7 +74,7 @@ export struct StatsPage {
 
             Row({ space: 8 }) {
               this.statCard($r('sys.symbol.flame_fill'), $r('app.string.streak'), `${this.currentStreak}d`, '#FFB74D')
-              this.statCard($r('sys.symbol.trophy_fill'), $r('app.string.best_streak'), `${this.maxStreak}d`, '#81C784')
+              this.statCard($r('sys.symbol.star_trophy_fill'), $r('app.string.best_streak'), `${this.maxStreak}d`, '#81C784')
             }
 
             // Weekly chart

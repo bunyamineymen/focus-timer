@@ -8,10 +8,10 @@ is based on the Pomodoro Technique. The app features session tracking with a loc
 # Preview
 
 <div>
-  <img src="screenshots/1.PNG" width="24%">
-  <img src="screenshots/2.PNG" width="24%">
-  <img src="screenshots/3.PNG" width="24%">
-  <img src="screenshots/4.PNG" width="24%">
+  <img src="screenshots/ss1.png" width="24%">
+  <img src="screenshots/ss2.png" width="24%">
+  <img src="screenshots/ss3.png" width="24%">
+  <img src="screenshots/ss4.png" width="24%">
 </div>
 
 # Use Cases
@@ -21,7 +21,7 @@ is based on the Pomodoro Technique. The app features session tracking with a loc
 - Track the active focus session.
 - Set default times for focus sessions.
 
-### **Newly Added**
+**Newly Added**
 
 - **Onboarding Flow**: Step-by-step welcome experience using Stepper component with goal setting and theme selection on first launch.
 - **Session History & Statistics**: All completed sessions are recorded in a relational database (RDB). View daily, weekly, and monthly stats with Canvas-based bar charts and pie charts.
