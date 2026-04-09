@@ -56,34 +56,44 @@ export struct StatsPage {
         })
 
         Scroll() {
-          Column({ space: 12 }) {
-            // Goal ring
-            GoalRingView({ goal: this.goal })
-
-            Divider().color('#333333')
-
-            // Summary cards
-            Row({ space: 8 }) {
-              this.statCard($r('app.string.sessions'), `${this.totalSessions}`, '#552586')
-              this.statCard($r('app.string.minutes_label'), `${this.totalMinutes}`, '#2196F3')
+          Column({ space: 14 }) {
+            // Goal ring card
+            Column() {
+              GoalRingView({ goal: this.goal })
             }
-            .justifyContent(FlexAlign.Center)
+            .width(SizeConstants.FULL_WIDTH_PERCENT)
+            .padding({ top: 8, bottom: 12 })
+            .backgroundColor('#141414')
+            .borderRadius(16)
+
+            // Summary stats
+            Row({ space: 8 }) {
+              this.statCard($r('sys.symbol.play_circle_fill'), $r('app.string.sessions'), `${this.totalSessions}`, '#9969C7')
+              this.statCard($r('sys.symbol.clock_fill'), $r('app.string.minutes_label'), `${this.totalMinutes}`, '#64B5F6')
+            }
 
             Row({ space: 8 }) {
-              this.statCard($r('app.string.streak'), `${this.currentStreak}d`, '#FF9800')
-              this.statCard($r('app.string.best_streak'), `${this.maxStreak}d`, '#4CAF50')
+              this.statCard($r('sys.symbol.flame_fill'), $r('app.string.streak'), `${this.currentStreak}d`, '#FFB74D')
+              this.statCard($r('sys.symbol.trophy_fill'), $r('app.string.best_streak'), `${this.maxStreak}d`, '#81C784')
             }
-            .justifyContent(FlexAlign.Center)
-
-            Divider().color('#333333')
 
             // Weekly chart
-            StatsChart({ weeklyData: this.weeklyData, tagData: this.tagData })
-
-            Divider().color('#333333')
+            this.sectionHeader($r('app.string.weekly_chart'))
+            Column() {
+              StatsChart({ weeklyData: this.weeklyData, tagData: this.tagData })
+            }
+            .width(SizeConstants.FULL_WIDTH_PERCENT)
+            .backgroundColor('#141414')
+            .borderRadius(16)
 
             // Calendar heatmap
-            CalendarHeatmap({ dailyData: this.heatmapData })
+            this.sectionHeader($r('app.string.calendar_heatmap'))
+            Column() {
+              CalendarHeatmap({ dailyData: this.heatmapData })
+            }
+            .width(SizeConstants.FULL_WIDTH_PERCENT)
+            .backgroundColor('#141414')
+            .borderRadius(16)
           }
           .padding({
             left: SizeConstants.PAGE_SIDE_PADDING,
@@ -104,21 +114,45 @@ export struct StatsPage {
   }
 
   @Builder
-  statCard(label: Resource, value: string, color: string) {
-    Column({ space: 2 }) {
-      Text(value)
-        .fontSize(18)
-        .fontColor(color)
-        .fontWeight(FontWeight.Bold)
-      Text(label)
-        .fontSize(9)
+  sectionHeader(title: Resource) {
+    Row() {
+      Text(title)
+        .fontSize(11)
         .fontColor('#888888')
+        .fontWeight(FontWeight.Medium)
     }
-    .width(72)
-    .height(52)
-    .justifyContent(FlexAlign.Center)
-    .backgroundColor('#1A1A1A')
-    .borderRadius(12)
+    .width(SizeConstants.FULL_WIDTH_PERCENT)
+    .padding({ left: 6, top: 4 })
+  }
+
+  @Builder
+  statCard(icon: Resource, label: Resource, value: string, color: string) {
+    Column({ space: 4 }) {
+      Row({ space: 6 }) {
+        SymbolGlyph(icon)
+          .fontSize(14)
+          .fontColor([color])
+        Text(label)
+          .fontSize(10)
+          .fontColor('#888888')
+          .maxLines(1)
+          .textOverflow({ overflow: TextOverflow.Ellipsis })
+          .layoutWeight(1)
+      }
+      .width(SizeConstants.FULL_WIDTH_PERCENT)
+
+      Text(value)
+        .fontSize(20)
+        .fontColor(Color.White)
+        .fontWeight(FontWeight.Bold)
+        .width(SizeConstants.FULL_WIDTH_PERCENT)
+        .textAlign(TextAlign.Start)
+    }
+    .layoutWeight(1)
+    .padding({ left: 10, right: 10, top: 10, bottom: 10 })
+    .backgroundColor('#141414')
+    .borderRadius(14)
+    .border({ width: 1, color: '#1F1F1F' })
   }
 
   private async loadStats() {

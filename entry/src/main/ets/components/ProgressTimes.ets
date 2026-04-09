@@ -7,6 +7,7 @@ import { SizeConstants } from '../constants/SizeConstants';
 @Component
 export default struct ProgressTimes {
   @ObjectLink program: Program;
+  onTimesChanged: () => void = () => {}
   private focuses = this.program.getFocusList()
 
   build() {
@@ -29,6 +30,8 @@ export default struct ProgressTimes {
                     focusable: false,
                     onChange: (val: number) => {
                       this.program.changeDefaultTime(focus.type, val)
+                      focus.value = val
+                      this.onTimesChanged()
                     }
                   }
                 }

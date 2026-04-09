@@ -54,9 +54,12 @@ export struct Index {
 
   updateFocus() {
     const currentFocus = this.program.currentFocus;
-    if (currentFocus.type !== this.currentFocusType) {
+    const newGoal = currentFocus.value * 60
+    const typeChanged = currentFocus.type !== this.currentFocusType
+    const valueChanged = this.timer.goal !== newGoal
+    if (typeChanged || (valueChanged && !this.timer.running)) {
       this.currentFocusType = currentFocus.type
-      this.timer.refresh(currentFocus.value * 60)
+      this.timer.refresh(newGoal)
     }
   }
 
@@ -109,7 +112,12 @@ export struct Index {
 
           // Page 2: Time settings
           ProgressTimes({
-            program: this.program
+            program: this.program,
+            onTimesChanged: () => {
+              if (!this.timer.running) {
+                this.timer.refresh(this.program.currentFocus.value * 60)
+              }
+            }
           })
 
           // Page 3: Cycle Visualizer

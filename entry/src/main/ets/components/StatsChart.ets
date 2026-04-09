@@ -15,32 +15,27 @@ export default struct StatsChart {
   private chartColors: string[] = ['#552586', '#2196F3', '#4CAF50', '#FF9800', '#E91E63', '#00BCD4', '#795548', '#607D8B']
 
   build() {
-    Column({ space: 12 }) {
-      // Weekly bar chart
-      Text($r('app.string.weekly_chart'))
-        .fontSize(14)
-        .fontColor('#CCCCCC')
-        .width(SizeConstants.FULL_WIDTH_PERCENT)
-
+    Column({ space: 10 }) {
       Canvas(this.canvasController)
         .width(SizeConstants.FULL_WIDTH_PERCENT)
         .height(120)
         .onReady(() => this.drawBarChart())
 
-      Divider().color('#333333').margin({ top: 4, bottom: 4 })
+      Divider().color('#262626').margin({ top: 2, bottom: 2 })
 
       // Tag distribution pie chart
       Text($r('app.string.tag_distribution'))
-        .fontSize(14)
-        .fontColor('#CCCCCC')
+        .fontSize(10)
+        .fontColor('#888888')
         .width(SizeConstants.FULL_WIDTH_PERCENT)
+        .padding({ left: 4 })
 
       Canvas(this.pieController)
         .width(SizeConstants.FULL_WIDTH_PERCENT)
         .height(120)
         .onReady(() => this.drawPieChart())
     }
-    .padding(8)
+    .padding({ left: 10, right: 10, top: 12, bottom: 12 })
     .width(SizeConstants.FULL_WIDTH_PERCENT)
   }
 

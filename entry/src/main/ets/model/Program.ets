@@ -43,8 +43,15 @@ export default class Program {
   }
 
   changeDefaultTime(type: FocusType, val: number) {
-    this.focusTimes.set(type, val)
-    AppStorage.setOrCreate('defaultTimes', this.focusTimes)
+    // Replace the map reference so @Observed notices the change.
+    const updated = new Map<FocusType, number>(this.focusTimes)
+    updated.set(type, val)
+    this.focusTimes = updated
+    AppStorage.setOrCreate('defaultTimes', updated)
+    // Keep currentFocus in sync if the edited type is the one on screen.
+    if (this.program[this.programIndex] === type) {
+      this.currentFocus = this.getCurrentFocus()
+    }
   }
 
   setProgramIndex(index: number) {

@@ -8,11 +8,6 @@ export default struct CalendarHeatmap {
 
   build() {
     Column({ space: 8 }) {
-      Text($r('app.string.calendar_heatmap'))
-        .fontSize(14)
-        .fontColor('#CCCCCC')
-        .width(SizeConstants.FULL_WIDTH_PERCENT)
-
       Canvas(this.canvasCtx)
         .width(SizeConstants.FULL_WIDTH_PERCENT)
         .height(100)
@@ -20,7 +15,7 @@ export default struct CalendarHeatmap {
 
       // Legend row
       Row({ space: 4 }) {
-        Text($r('app.string.less')).fontSize(8).fontColor('#888888')
+        Text($r('app.string.less')).fontSize(9).fontColor('#888888')
         ForEach(this.heatColors, (color: string) => {
           Row()
             .width(10)
@@ -28,12 +23,13 @@ export default struct CalendarHeatmap {
             .borderRadius(2)
             .backgroundColor(color)
         }, (color: string) => color)
-        Text($r('app.string.more')).fontSize(8).fontColor('#888888')
+        Text($r('app.string.more')).fontSize(9).fontColor('#888888')
       }
       .justifyContent(FlexAlign.Center)
       .width(SizeConstants.FULL_WIDTH_PERCENT)
     }
-    .padding(8)
+    .padding({ left: 10, right: 10, top: 12, bottom: 12 })
+    .width(SizeConstants.FULL_WIDTH_PERCENT)
   }
 
   private drawHeatmap() {
