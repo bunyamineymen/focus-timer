@@ -17,7 +17,7 @@ export struct OnboardingPage {
 
   build() {
     NavDestination() {
-      Column({ space: 16 }) {
+      Column({ space: 12 }) {
         Row({ space: 6 }) {
           ForEach([0, 1, 2, 3], (step: number) => {
             Circle()
@@ -27,7 +27,7 @@ export struct OnboardingPage {
           }, (step: number) => `${step}`)
         }
         .justifyContent(FlexAlign.Center)
-        .margin({ top: 12 })
+        .margin({ top: SizeConstants.PAGE_HEADER_TOP_PADDING })
 
         Scroll() {
           Column() {
@@ -56,9 +56,9 @@ export struct OnboardingPage {
                 .fontSize(11)
             }
             .layoutWeight(1)
-            .height(32)
+            .height(36)
             .backgroundColor('#222222')
-            .borderRadius(16)
+            .borderRadius(18)
             .onClick(() => {
               this.changeStep(this.currentStep - 1)
             })
@@ -70,9 +70,9 @@ export struct OnboardingPage {
               .fontSize(11)
           }
           .layoutWeight(1)
-          .height(32)
+          .height(36)
           .backgroundColor('#552586')
-          .borderRadius(16)
+          .borderRadius(18)
           .onClick(() => {
             if (this.currentStep === 3) {
               this.completeOnboarding()
@@ -81,7 +81,11 @@ export struct OnboardingPage {
             }
           })
         }
-        .padding({ left: 16, right: 16, bottom: 16 })
+        .padding({
+          left: SizeConstants.PAGE_SIDE_PADDING + 8,
+          right: SizeConstants.PAGE_SIDE_PADDING + 8,
+          bottom: SizeConstants.PAGE_CONTENT_BOTTOM_PADDING - 16
+        })
         .width(SizeConstants.FULL_WIDTH_PERCENT)
       }
       .width(SizeConstants.FULL_WIDTH_PERCENT)

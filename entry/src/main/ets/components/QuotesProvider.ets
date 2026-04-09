@@ -28,7 +28,7 @@ export default struct QuotesProvider {
   }
 
   build() {
-    Column({ space: 8 }) {
+    Column({ space: 4 }) {
       Marquee({
         start: true,
         step: 3,
@@ -42,12 +42,11 @@ export default struct QuotesProvider {
 
       if (this.currentAuthor !== '') {
         Text(`— ${this.currentAuthor}`)
-          .fontSize(9)
+          .fontSize(10)
           .fontColor('#888888')
           .fontStyle(FontStyle.Italic)
       }
     }
-    .padding({ left: 12, right: 12 })
     .width(SizeConstants.FULL_WIDTH_PERCENT)
   }
 

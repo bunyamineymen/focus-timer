@@ -45,11 +45,11 @@ export struct SessionCompleteDialog {
         this.controller.close()
       })
     }
-    .padding(16)
-    .width('100%')
+    .padding(14)
+    .width('86%')
     .alignItems(HorizontalAlign.Center)
     .backgroundColor('#1A1A1A')
-    .borderRadius(16)
+    .borderRadius(18)
   }
 }
 
@@ -100,11 +100,11 @@ export struct ConfirmDialog {
       }
       .width('100%')
     }
-    .padding(16)
-    .width('100%')
+    .padding(14)
+    .width('86%')
     .alignItems(HorizontalAlign.Center)
     .backgroundColor('#1A1A1A')
-    .borderRadius(16)
+    .borderRadius(18)
   }
 }
 
@@ -163,10 +163,10 @@ export struct AchievementUnlockDialog {
       .borderRadius(14)
       .onClick(() => this.controller.close())
     }
-    .padding(16)
-    .width('100%')
+    .padding(14)
+    .width('86%')
     .alignItems(HorizontalAlign.Center)
     .backgroundColor('#1A1A1A')
-    .borderRadius(16)
+    .borderRadius(18)
   }
 }

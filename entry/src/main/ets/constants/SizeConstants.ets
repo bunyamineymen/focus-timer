@@ -5,8 +5,19 @@ export class SizeConstants {
   static readonly PERCENT_80 = '80%';
   static readonly PERCENT_90 = '90%';
   static readonly PERCENT_50 = '50%';
-  static readonly PAGE_SIDE_PADDING: number = 8;
-  static readonly PAGE_HEADER_TOP_PADDING: number = 14;
-  static readonly PAGE_CONTENT_BOTTOM_PADDING: number = 24;
-  static readonly FLOATING_BUTTON_TOP_OFFSET: number = 18;
+
+  // Circular display safe-area. Huawei Watch 5 (466x466) inscribed square ≈ 70%
+  // of diameter, so top/bottom arcs ~34vp each are clipped. Use generous insets.
+  static readonly PAGE_SIDE_PADDING: number = 16;
+  static readonly PAGE_HEADER_TOP_PADDING: number = 30;
+  static readonly PAGE_CONTENT_BOTTOM_PADDING: number = 56;
+  static readonly FLOATING_BUTTON_TOP_OFFSET: number = 34;
+
+  // Tap targets — HarmonyOS wearable minimum is 36vp.
+  static readonly TAP_TARGET_MIN: number = 36;
+  static readonly HEADER_BUTTON_SIZE: number = 32;
+  static readonly HEADER_BUTTON_RADIUS: number = 16;
+
+  // Dialog inset width on circular display.
+  static readonly DIALOG_WIDTH_PERCENT: string = '86%';
 }

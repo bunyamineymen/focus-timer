@@ -22,26 +22,27 @@ export struct SettingsPage {
               .fontColor([Color.White])
               .fontSize(16)
           }
-          .width(28)
-          .height(28)
-          .borderRadius(14)
+          .width(SizeConstants.HEADER_BUTTON_SIZE)
+          .height(SizeConstants.HEADER_BUTTON_SIZE)
+          .borderRadius(SizeConstants.HEADER_BUTTON_RADIUS)
           .backgroundColor('#333333')
           .onClick(() => this.pageInfos.pop())
 
           Text($r('app.string.settings'))
-            .fontSize(16)
+            .fontSize(15)
             .fontColor(Color.White)
             .fontWeight(FontWeight.Bold)
             .layoutWeight(1)
             .textAlign(TextAlign.Center)
 
-          Blank().width(28)
+          Blank().width(SizeConstants.HEADER_BUTTON_SIZE)
         }
         .width(SizeConstants.FULL_WIDTH_PERCENT)
         .padding({
           left: SizeConstants.PAGE_SIDE_PADDING,
           right: SizeConstants.PAGE_SIDE_PADDING,
-          top: SizeConstants.PAGE_HEADER_TOP_PADDING
+          top: SizeConstants.PAGE_HEADER_TOP_PADDING,
+          bottom: 6
         })
 
         Scroll() {
@@ -173,8 +174,6 @@ export struct SettingsPage {
             }
             .backgroundColor('#1A1A1A')
             .borderRadius(12)
-
-            Blank().height(20)
           }
           .padding({
             left: SizeConstants.PAGE_SIDE_PADDING,

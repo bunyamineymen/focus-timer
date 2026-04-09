@@ -31,7 +31,6 @@ export default struct BreakSuggestions {
 
   build() {
     Column() {
-      Blank().width('100%').height('20%')
       Swiper() {
         ForEach(this.activities, (activity: BreakActivity, index: number) => {
           Column({ space: 6 }) {
@@ -45,11 +44,11 @@ export default struct BreakSuggestions {
               .fontWeight(FontWeight.Medium)
 
             Text(activity.description)
-              .fontSize(9)
+              .fontSize(10)
               .fontColor('#AAAAAA')
               .textAlign(TextAlign.Center)
               .maxLines(2)
-              .padding({ left: 16, right: 16 })
+              .padding({ left: 24, right: 24 })
 
             if (this.miniRunning && this.currentIndex === index) {
               Text(this.formatMiniTime())
@@ -63,9 +62,10 @@ export default struct BreakSuggestions {
                   .fontColor(Color.White)
                   .fontSize(11)
               }
-              .height(28)
+              .height(32)
+              .padding({ left: 16, right: 16 })
               .backgroundColor(activity.color)
-              .borderRadius(14)
+              .borderRadius(16)
               .margin({ top: 4 })
               .onClick(() => {
                 this.currentIndex = index
@@ -74,9 +74,13 @@ export default struct BreakSuggestions {
             }
           }
           .width(SizeConstants.FULL_WIDTH_PERCENT)
+          .height(SizeConstants.FULL_HEIGHT_PERCENT)
           .justifyContent(FlexAlign.Center)
+          .alignItems(HorizontalAlign.Center)
         }, (activity: BreakActivity, index: number) => `${index}`)
       }
+      .width(SizeConstants.FULL_WIDTH_PERCENT)
+      .height(SizeConstants.FULL_HEIGHT_PERCENT)
       .index(this.currentIndex)
       .indicator(
         new DotIndicator()
@@ -93,8 +97,7 @@ export default struct BreakSuggestions {
     }
     .width(SizeConstants.FULL_WIDTH_PERCENT)
     .height(SizeConstants.FULL_HEIGHT_PERCENT)
-    .alignSelf(ItemAlign.Center)
-    .alignSelf(ItemAlign.Center)
+    .justifyContent(FlexAlign.Center)
   }
 
   private startMiniTimer(duration: number) {

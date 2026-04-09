@@ -77,10 +77,13 @@ export struct Index {
                 QuotesProvider()
               }
             }
-            .height(36)
+            .width(SizeConstants.PERCENT_70)
+            .height(44)
+            .margin({ bottom: 12 })
           }
           .width(SizeConstants.FULL_WIDTH_PERCENT)
           .height(SizeConstants.FULL_HEIGHT_PERCENT)
+          .alignItems(HorizontalAlign.Center)
 
           // Page 1: Controller with tag selector
           Column() {
@@ -94,13 +97,15 @@ export struct Index {
             Column() {
               if (this.currentFocusType === FocusType.focus) {
                 TagSelector({ selectedTagId: this.selectedTag })
-                  .padding({ bottom: 4 })
               }
             }
-            .height(60)
+            .width(SizeConstants.PERCENT_80)
+            .height(72)
+            .margin({ bottom: 10 })
           }
           .width(SizeConstants.FULL_WIDTH_PERCENT)
           .height(SizeConstants.FULL_HEIGHT_PERCENT)
+          .alignItems(HorizontalAlign.Center)
 
           // Page 2: Time settings
           ProgressTimes({
@@ -134,13 +139,13 @@ export struct Index {
         Button() {
           SymbolGlyph($r('sys.symbol.gearshape'))
             .fontColor([Color.White])
-            .fontSize(14)
+            .fontSize(16)
         }
-        .width(28)
-        .height(28)
-        .borderRadius(14)
+        .width(SizeConstants.HEADER_BUTTON_SIZE)
+        .height(SizeConstants.HEADER_BUTTON_SIZE)
+        .borderRadius(SizeConstants.HEADER_BUTTON_RADIUS)
         .backgroundColor('#33333380')
-        .position({ x: '70%', y: SizeConstants.FLOATING_BUTTON_TOP_OFFSET })
+        .position({ x: '62%', y: SizeConstants.FLOATING_BUTTON_TOP_OFFSET })
         .onClick(() => {
           this.pageInfos.pushPathByName('Settings', null)
         })
@@ -149,13 +154,13 @@ export struct Index {
         Button() {
           SymbolGlyph($r('sys.symbol.list_bullet'))
             .fontColor([Color.White])
-            .fontSize(14)
+            .fontSize(16)
         }
-        .width(28)
-        .height(28)
-        .borderRadius(14)
+        .width(SizeConstants.HEADER_BUTTON_SIZE)
+        .height(SizeConstants.HEADER_BUTTON_SIZE)
+        .borderRadius(SizeConstants.HEADER_BUTTON_RADIUS)
         .backgroundColor('#33333380')
-        .position({ x: '25%', y: SizeConstants.FLOATING_BUTTON_TOP_OFFSET })
+        .position({ x: '24%', y: SizeConstants.FLOATING_BUTTON_TOP_OFFSET })
         .onClick(() => {
           this.pageInfos.pushPathByName('Stats', null)
         })

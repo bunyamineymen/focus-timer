@@ -32,8 +32,8 @@ export default struct BadgeCard {
       }
 
       Text(this.achievement.name)
-        .fontSize(9)
-        .fontColor(this.progress.unlocked ? Color.White : '#666666')
+        .fontSize(10)
+        .fontColor(this.progress.unlocked ? Color.White : '#888888')
         .textAlign(TextAlign.Center)
         .maxLines(2)
         .textOverflow({ overflow: TextOverflow.Ellipsis })

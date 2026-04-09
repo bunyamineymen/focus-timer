@@ -31,8 +31,8 @@ export default struct BreathingExercise {
       Stack() {
         // Outer glow ring
         Circle()
-          .width(140)
-          .height(140)
+          .width(118)
+          .height(118)
           .fill(Color.Transparent)
           .stroke(this.circleColor)
           .strokeWidth(2)
@@ -40,21 +40,21 @@ export default struct BreathingExercise {
 
         // Breathing circle
         Circle()
-          .width(100)
-          .height(100)
+          .width(86)
+          .height(86)
           .fill(this.circleColor)
           .opacity(0.3)
           .scale({ x: this.circleScale, y: this.circleScale })
 
         // Inner circle
         Circle()
-          .width(60)
-          .height(60)
+          .width(52)
+          .height(52)
           .fill(this.circleColor)
           .opacity(0.6)
           .scale({ x: this.circleScale, y: this.circleScale })
 
-        Column({ space: 4 }) {
+        Column({ space: 2 }) {
           Text(this.phaseText)
             .fontSize(11)
             .fontColor(Color.White)
@@ -65,8 +65,8 @@ export default struct BreathingExercise {
             .fontWeight(FontWeight.Bold)
         }
       }
-      .width(150)
-      .height(150)
+      .width(126)
+      .height(126)
 
       Row({ space: 12 }) {
         Button() {
@@ -74,9 +74,9 @@ export default struct BreathingExercise {
             .fontColor([Color.White])
             .fontSize(16)
         }
-        .width(40)
-        .height(40)
-        .borderRadius(20)
+        .width(36)
+        .height(36)
+        .borderRadius(18)
         .backgroundColor('#552586')
         .onClick(() => {
           if (this.isRunning) {
@@ -88,18 +88,19 @@ export default struct BreathingExercise {
 
         Column() {
           Text($r('app.string.cycles'))
-            .fontSize(9)
+            .fontSize(10)
             .fontColor('#888888')
           Text(`${this.cyclesCompleted}`)
             .fontSize(14)
             .fontColor(Color.White)
         }
       }
-      .margin({ top: 8 })
+      .margin({ top: 10 })
     }
     .width(SizeConstants.FULL_WIDTH_PERCENT)
     .height(SizeConstants.FULL_HEIGHT_PERCENT)
     .justifyContent(FlexAlign.Center)
+    .alignItems(HorizontalAlign.Center)
   }
 
   private startBreathing() {

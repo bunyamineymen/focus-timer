@@ -12,10 +12,10 @@ export default struct CycleVisualizer {
   private longBreakColor: string = '#2196F3'
 
   build() {
-    Column({ space: 8 }) {
+    Column({ space: 10 }) {
       Canvas(this.canvasCtx)
-        .width(160)
-        .height(160)
+        .width(144)
+        .height(144)
         .onReady(() => this.drawCycle())
 
       // Legend
@@ -34,19 +34,19 @@ export default struct CycleVisualizer {
   legendItem(color: string, label: Resource) {
     Row({ space: 4 }) {
       Circle().width(8).height(8).fill(color)
-      Text(label).fontSize(9).fontColor('#AAAAAA')
+      Text(label).fontSize(10).fontColor('#AAAAAA')
     }
   }
 
   private drawCycle() {
     const ctx = this.canvasCtx
-    const cx = 80
-    const cy = 80
-    const outerR = 65
-    const innerR = 45
+    const cx = 72
+    const cy = 72
+    const outerR = 58
+    const innerR = 40
     const total = this.programCycle.length
 
-    ctx.clearRect(0, 0, 160, 160)
+    ctx.clearRect(0, 0, 144, 144)
 
     const segmentAngle = (Math.PI * 2) / total
     const startOffset = -Math.PI / 2
