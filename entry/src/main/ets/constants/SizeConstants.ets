@@ -11,7 +11,7 @@ export class SizeConstants {
   static readonly PAGE_SIDE_PADDING: number = 16;
   static readonly PAGE_HEADER_TOP_PADDING: number = 30;
   static readonly PAGE_CONTENT_BOTTOM_PADDING: number = 56;
-  static readonly FLOATING_BUTTON_TOP_OFFSET: number = 34;
+  static readonly FLOATING_BUTTON_TOP_OFFSET: number = 24;
 
   // Tap targets — HarmonyOS wearable minimum is 36vp.
   static readonly TAP_TARGET_MIN: number = 36;
